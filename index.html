@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <div>
+        <h1>Student Feedback System</h1>
+        <p>Educational Evaluation & Feedback Management</p>
+    </div>
+    <span class="tag">FRONTEND PROJECT</span>
+</header>
+
+<nav>
+    <a href="#home">Dashboard</a>
+    <a href="#feedback">Give Feedback</a>
+    <a href="#reports">Feedback Reports</a>
+</nav>
+
+<main>
+    <section id="home" class="welcome">
+        <div>
+            <h2>Welcome to the Feedback Portal</h2>
+            <p>Your feedback helps improve teaching quality and academic services.</p>
+        </div>
+        <span class="welcome-icon">★</span>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <p>Total Feedback</p>
+            <h2 id="totalFeedback">0</h2>
+        </div>
+        <div class="stat-card">
+            <p>Average Rating</p>
+            <h2 id="averageRating">0.0 / 5</h2>
+        </div>
+        <div class="stat-card">
+            <p>Faculty Evaluated</p>
+            <h2 id="facultyCount">0</h2>
+        </div>
+    </section>
+
+    <section class="panel" id="feedback">
+        <div class="section-heading">
+            <div>
+                <h2>Student Feedback Form</h2>
+                <p>Fill in the details and evaluate your learning experience.</p>
+            </div>
+        </div>
+
+        <form id="feedbackForm">
+            <h3>Student Information</h3>
+
+            <div class="form-grid">
+                <div class="field">
+                    <label for="studentName">Student Name</label>
+                    <input type="text" id="studentName"
+                           placeholder="Enter your name" required>
+                </div>
+
+                <div class="field">
+                    <label for="rollNumber">Roll Number</label>
+                    <input type="text" id="rollNumber"
+                           placeholder="Enter roll number" required>
+                </div>
+
+                <div class="field">
+                    <label for="department">Department</label>
+                    <select id="department" required>
+                        <option value="">Select department</option>
+                        <option>Computer Science</option>
+                        <option>Electronics and Communication</option>
+                        <option>Electrical and Electronics</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Civil Engineering</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="semester">Semester</label>
+                    <select id="semester" required>
+                        <option value="">Select semester</option>
+                        <option>Semester 1</option>
+                        <option>Semester 2</option>
+                        <option>Semester 3</option>
+                        <option>Semester 4</option>
+                        <option>Semester 5</option>
+                        <option>Semester 6</option>
+                        <option>Semester 7</option>
+                        <option>Semester 8</option>
+                    </select>
+                </div>
+            </div>
+
+            <h3>Academic Evaluation</h3>
+
+            <div class="form-grid">
+                <div class="field">
+                    <label for="subject">Subject / Course</label>
+                    <select id="subject" required>
+                        <option value="">Select subject</option>
+                        <option>Data Structures</option>
+                        <option>Operating Systems</option>
+                        <option>Digital Logic</option>
+                        <option>Computer Networks</option>
+                        <option>Database Management Systems</option>
+                        <option>Web Development</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="faculty">Faculty Name</label>
+                    <input type="text" id="faculty"
+                           placeholder="Enter faculty name" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Teaching Quality Rating</label>
+                <div class="stars" id="starRating">
+                    <button type="button" class="star"
+                            data-rating="1" aria-label="1 star">★</button>
+                    <button type="button" class="star"
+                            data-rating="2" aria-label="2 stars">★</button>
+                    <button type="button" class="star"
+                            data-rating="3" aria-label="3 stars">★</button>
+                    <button type="button" class="star"
+                            data-rating="4" aria-label="4 stars">★</button>
+                    <button type="button" class="star"
+                            data-rating="5" aria-label="5 stars">★</button>
+                </div>
+                <p id="ratingLabel" class="hint">
+                    Select a rating from 1 to 5
+                </p>
+            </div>
+
+            <div class="field">
+                <label for="comments">Comments and Suggestions</label>
+                <textarea id="comments" rows="4"
+                    placeholder="Share your feedback and suggestions..."
+                    required></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="primary-btn">
+                    Submit Feedback
+                </button>
+                <button type="reset" class="secondary-btn" id="resetBtn">
+                    Reset Form
+                </button>
+            </div>
+
+            <p id="message" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+
+    <section class="panel" id="reports">
+        <div class="section-heading">
+            <div>
+                <h2>Feedback Reports</h2>
+                <p>Review submitted feedback and evaluation ratings.</p>
+            </div>
+        </div>
+
+        <div class="filters">
+            <input type="search" id="searchInput"
+                   placeholder="Search student, faculty or subject">
+
+            <select id="ratingFilter">
+                <option value="all">All Ratings</option>
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="2">2 Stars</option>
+                <option value="1">1 Star</option>
+            </select>
+        </div>
+
+        <div id="feedbackList">
+            <p class="empty">No feedback submitted yet.</p>
+        </div>
+
+        <button type="button" id="clearBtn" class="danger-btn">
+            Clear All Feedback
+        </button>
+
+        <p class="hint">
+            Demonstration only: feedback is not saved to a database.
+            Refreshing the page clears the submitted records.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <p>Student Feedback System | Frontend Mini Project</p>
+    <p>Developed using HTML, CSS and JavaScript</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
